@@ -1,5 +1,5 @@
 ---
-title: 'Home'
+title: 'Can Visuo-motor Policies Benefit From Random Exploration Data?'
 date: 2023-10-24
 type: landing
 
