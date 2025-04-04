@@ -22,7 +22,7 @@ sections:
             class="inline-block rounded border px-5 py-2 font-semibold transition
             md:ml-4 px-4 py-1.5 text-sm
             border-black  hover:bg-black dark:hover:bg-white dark:hover:text-black hover:text-white dark:border-white dark:text-white dark:hover:bg-white
-            hidden lg:inline-block">
+            lg:inline-block">
             Read the Paper
           </a>
           <a href="https://github.com/ShutongJIN/CloudGripper_Stack_1k" class="mt-3 inline-flex items-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900">
