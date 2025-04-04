@@ -5,17 +5,16 @@
 
 # Appearance
 appearance:
-  mode: light
+  mode: dark
   color: indigo
 
 # SEO
 marketing:
   seo:
-    site_type: Person
-    local_business_type: ''
-    org_name: ''
-    description: 'A highly-customizable Hugo landing page theme powered by Hugo Blox website builder.'
-    twitter: 'GetResearchDev'
+    site_type: Research Paper
+    local_business_type: 'University'
+    org_name: 'KTH Royal Institute of Technology'
+    description: 'Can Visuo-motor policies benefit from random exploration data? A case study on stacking'
   analytics:
     google_analytics: ''
     baidu_tongji: ''
@@ -29,7 +28,7 @@ marketing:
 # Site header
 header:
   navbar:
-    enable: true
+    enable: false
     blox: "navbar"
     align: "center"
     fixed_to_top: true
@@ -39,15 +38,15 @@ header:
       filename: "logo.svg"
     button:
       enable: true
-      text: "Get Started"
-      url: "https://hugoblox.com/templates/"
-    show_search: true
-    show_theme_chooser: true
+      text: "Read the Paper"
+      url: "https://arxiv.org/abs/2503.23571"
+    show_search: false
+    show_theme_chooser: false
 
 # Site footer
 footer:
   copyright:
-    notice: '© {year} My Company'
+    notice: '© {year} KTH Royal Institute of Technology'
 
 # Localization
 locale:
