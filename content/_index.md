@@ -196,7 +196,7 @@ sections:
           In this study, the **CloudGripper robotic testbed** was employed to remotely and autonomously collect a large dataset of real robot data, train policies, and conduct evaluations with **minimal human intervention** via cloud services. Researchers interested in utilizing CloudGripper are encouraged to explore the **open-source dataset** and **data collection pipeline**.
       button:
         text: CloudGripper Github
-        url: "https://cloudgripper.org/getstarted"
+        url: "https://github.com/cloudgripper"
     design:
       card:
         css_class: "bg-primary-700"
