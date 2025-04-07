@@ -170,7 +170,7 @@ sections:
             Data episodes are generated via random motor commands, with a detector using a custom bottom camera that views the scene from below through a transparent base plate to automatically label episodes as successful or failed. The successful episodes are used to train a policy for autonomous data collection.
           image: structureB.png
           button:
-            text: Code to be released after paper acceptance
+            text: Code to be released
             url: "#"
     design:
       css_class: "bg-gray-100 dark:bg-gray-900"
@@ -222,7 +222,7 @@ sections:
       text: |
         ## CloudGripper-Stack-750 Dataset
         ![Alt text](matrix.gif)
-        The dataset comprises over **750 hours** of robot activity data—including **400 successful** and **12,000 failed** episodes—collected autonomously using the CloudGripper testbed. This large-scale collection is intended as a resource for research on visuo-motor policy development and will be released after paper acceptance.
+        The dataset comprises over **750 hours** of robot activity data—including **400 successful** and **12,000 failed** episodes—collected autonomously using the CloudGripper testbed. This large-scale collection is intended as a resource for research on visuo-motor policy development.
     design:
       css_class: "light"
       css_style: |
@@ -245,7 +245,7 @@ sections:
     content:
       title: Collected Using CloudGripper
       text: |
-          In this study, the CloudGripper cloud robotics testbed is employed to remotely and autonomously collect a large-scale dataset of real-world robot data, train policies, and conduct evaluations with minimal human intervention. Researchers interested in utilizing CloudGripper are encouraged to explore the dataset and data collection pipeline when these are released upon paper acceptance.
+          In this study, the CloudGripper cloud robotics testbed is employed to remotely and autonomously collect a large-scale dataset of real-world robot data, train policies, and conduct evaluations with minimal human intervention. Researchers interested in utilizing CloudGripper are encouraged to explore the dataset and data collection pipeline when these are released.
       button:
         text: CloudGripper Github
         url: "https://github.com/cloudgripper"
