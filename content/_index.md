@@ -110,7 +110,7 @@ sections:
     content:
       text: |
         ## Motivation
-        Visuo-motor policies have long faced scalability challenges due in part to the high cost and complexity of collecting human demonstrations. To address this, we consider random exploration data—an easily scalable yet typically overlooked resource—as a potential supplement. However, its unstructured nature and absence of task-specific information complicate its practical use, motivating our central question: __Can Visuo-motor Policies Benefit from Random Exploration Data?__
+        Visuo-motor policies for robotic manipulation have long faced scalability challenges in collecting human demonstrations. The high cost of human labor and reliance on teleoperation systems pose substantial barriers to data collection in new environments. This motivates us to focus on a scalable yet often overlooked data source—random exploration data, collected within the target task’s environment, which might be a potential add-on for human demonstrations. However, its lack of task-specific information and the inherent unstructured nature of such data greatly complicates its practical utilization. This leads us to investigate the following question: __Can Visuo-motor Policies Benefit from Random Exploration Data?__
 
     design:
       css_class: "light"
@@ -133,10 +133,10 @@ sections:
       text: |
         ## Overview
         We examine two paradigms for leveraging random exploration data in visuo-motor policy learning:
-        - **Paradigm I:** Using random exploration video frames for visual pre-training with reconstruction, contrastive, and distillation self-supervised objectives.
-        - **Paradigm II:** Employing random motor commands within a staged learning framework to autonomously collect data for behavior cloning.
+        - **Paradigm I** evaluates the use of random exploration video frames through three self-supervised pre-training objectives: reconstruction, contrastive, and distillation loss.
+        - **Paradigm II** evaluates the effectiveness of random motor commands for autonomous data collection within a fully automated staged learning framework.
 
-        The dataset presented in this work includes over **750 hours** of robot data, providing insights into the benefits and limitations of each approach.
+        The dataset presented in this work includes over **750 hours** of robot activity data.
 
     design:
       css_class: "bg-gray-100 dark:bg-gray-900"
@@ -173,14 +173,14 @@ sections:
       items:
         - title: Random Video Frames for Visual Pre-training
           text: |
-            Paradigm I employs random exploration frames from the CloudGripper-Push-1K dataset to pre-train visual encoders.
+            Random exploration video frames are used for self-supervised visual pre-training. The resulting pre-trained visual encoder is then applied and evaluated in a visuo- motor policy for a new task.
           image: structureA.png
           button:
             text: CloudGripper-Push-1K Dataset
             url: "https://github.com/cloudgripper/cloudgripper-push-1k"
         - title: Random Motor Commands for Staged Learning
           text: |
-            Paradigm II implements a staged learning framework, where random motor commands autonomously generate training episodes, progressively training a more robust policy.
+            Data episodes are generated via random motor commands, with a detector using a custom bottom camera that views the scene from below through a transparent base plate to automatically label episodes as successful or failed. The successful episodes are used to train a policy for autonomous data collection.
           image: structureB.png
           button:
             text: Code will be open-sourced after paper acceptance
@@ -194,29 +194,38 @@ sections:
     id: features
     content:
       title: Comparative Analysis of Self-Supervised Objective Functions
-      text: Explore how different pre-training methods impact visuo-motor policy performance. GIFs below show FullGrad saliency maps for the respective models with different pre-training objectives.
+      text: GIFs below show FullGrad saliency maps for models with different pre-training objectives and datasets. All models shown use the ViT-Small architecture. Results of all models and dataset compared in this work can be found in the [paper](https://arxiv.org/abs/2503.23571).
       items:
         - name: MoCo (Contrastive Loss)
           description: |
-            ![Alt text](moco_vit_small_RM_cam.gif)Our experiments indicate that MoCo pre-training results in **lower prediction errors** and **improved success rates**, though its performance is **sensitive to the initial object positions**.
+            ![Alt text](moco_vit_small_RM_cam.gif)
         - name: DINO (Distillation Loss)
           description: |
-            ![Alt text](dino_vit_small_RM_cam.gif)This model demonstrated **lower performance** on unstructured random data compared to MoCo, potentially due to its **activations focusing on the background**.
+            ![Alt text](dino_vit_small_RM_cam.gif)
         - name: MAE (Reconstruction Loss)
           description: |
-            ![Alt text](mae_vit_small_RM_cam.gif)This modelshowed—similar to DINO—a **sensitivity to background clutter**, leading to **suboptimal performance** on random exploration frames in our stacking task.
+            ![Alt text](mae_vit_small_RM_cam.gif)
     design:
       css_class: "bg-white dark:bg-gray-800"
       spacing:
-        padding: ["2rem", "2rem", "2rem", "2rem"]
+        padding: ["2rem", "2rem", "1rem", "1rem"]
+
+  - block: markdown
+    content:
+      text: |
+       We find that models pre-trained with MoCo objective outperform both MAE and DINO by a significant margin when trained on random exploration data. It can be seen that the activations of MoCo ViT-Small concentrate mainly in the task area. In contrast, the activations of poor-performing MAE ViT-Small and DINO ViT-Small focus on the background and exhibit dispersed activations when trained on random exploratin data. 
+      design:
+      css_class: "bg-white dark:bg-gray-900"
+      spacing:
+        padding: ["0.1rem", "0.1rem", "5rem", "0.1rem"]
+
 
   - block: markdown
     content:
       text: |
         ## Overview of Results
-        We conducted extensive real-world evaluations using the CloudGripper testbed. Our results indicate:
-        - Contrastive learning (MoCo) outperforms other self-supervised objectives (MAE, DINO) for visual pre-training using random exploration frames but is sensitive to initial object positions.
-        - Random motor command data mitigates distributional biases inherent in autonomously collected datasets, improving data distribution balance and policy performance.
+        -  **Paradigm I**: We identify MoCo with a ViT-Small architecture as an effective approach for visual pre-training leveraging random exploration video frames, though its performance is highly dependent on object initial positions.
+        - **Paradigm II**: We find that autonomous data collection policies exhibit a strong distributional bias regarding the position of successful episodes in the workspace; however, incorporating data collected via random motor commands introduces balancing randomness, mitigating the distributional bias. Furthermore, our findings suggest that enforcing an even data distribution when composing data across stages and employing separate subtask policies may enable fully autonomous collection of sequential tasks.
     design:
       css_class: "bg-gray-100 dark:bg-gray-900"
       spacing:

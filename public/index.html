@@ -434,6 +434,24 @@
         
       
     
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
   
   
   
@@ -950,7 +968,7 @@ p {
 
   
   <div class="prose prose-slate lg:prose-xl dark:prose-invert max-w-prose"><h2 id="motivation">Motivation</h2>
-<p>Visuo-motor policies have long faced scalability challenges due in part to the high cost and complexity of collecting human demonstrations. To address this, we consider random exploration data—an easily scalable yet typically overlooked resource—as a potential supplement. However, its unstructured nature and absence of task-specific information complicate its practical use, motivating our central question: <strong>Can Visuo-motor Policies Benefit from Random Exploration Data?</strong></p></div>
+<p>Visuo-motor policies for robotic manipulation have long faced scalability challenges in collecting human demonstrations. The high cost of human labor and reliance on teleoperation systems pose substantial barriers to data collection in new environments. This motivates us to focus on a scalable yet often overlooked data source—random exploration data, collected within the target task’s environment, which might be a potential add-on for human demonstrations. However, its lack of task-specific information and the inherent unstructured nature of such data greatly complicates its practical utilization. This leads us to investigate the following question: <strong>Can Visuo-motor Policies Benefit from Random Exploration Data?</strong></p></div>
 </div>
 
 
@@ -1085,10 +1103,10 @@ p {
   <div class="prose prose-slate lg:prose-xl dark:prose-invert max-w-prose"><h2 id="overview">Overview</h2>
 <p>We examine two paradigms for leveraging random exploration data in visuo-motor policy learning:</p>
 <ul>
-<li><strong>Paradigm I:</strong> Using random exploration video frames for visual pre-training with reconstruction, contrastive, and distillation self-supervised objectives.</li>
-<li><strong>Paradigm II:</strong> Employing random motor commands within a staged learning framework to autonomously collect data for behavior cloning.</li>
+<li><strong>Paradigm I</strong> evaluates the use of random exploration video frames through three self-supervised pre-training objectives: reconstruction, contrastive, and distillation loss.</li>
+<li><strong>Paradigm II</strong> evaluates the effectiveness of random motor commands for autonomous data collection within a fully automated staged learning framework.</li>
 </ul>
-<p>The dataset presented in this work includes over <strong>750 hours</strong> of robot data, providing insights into the benefits and limitations of each approach.</p>
+<p>The dataset presented in this work includes over <strong>750 hours</strong> of robot activity data.</p>
 </div>
 </div>
 
@@ -1210,7 +1228,7 @@ p {
     <img class="w-full" src="/case-study-site/media/structureA_hu_ac1796723bffa3ed.webp" alt="Random Video Frames for Visual Pre-training" style="order: 1">
     <div class="mt-4 md:mt-0">
       <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Random Video Frames for Visual Pre-training</h2>
-      <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">Paradigm I employs random exploration frames from the CloudGripper-Push-1K dataset to pre-train visual encoders.</p>
+      <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">Random exploration video frames are used for self-supervised visual pre-training. The resulting pre-trained visual encoder is then applied and evaluated in a visuo- motor policy for a new task.</p>
       
       
       
@@ -1233,7 +1251,7 @@ p {
     <img class="w-full" src="/case-study-site/media/structureB_hu_c16cf64a490a869b.webp" alt="Random Motor Commands for Staged Learning" >
     <div class="mt-4 md:mt-0">
       <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Random Motor Commands for Staged Learning</h2>
-      <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">Paradigm II implements a staged learning framework, where random motor commands autonomously generate training episodes, progressively training a more robust policy.</p>
+      <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">Data episodes are generated via random motor commands, with a detector using a custom bottom camera that views the scene from below through a transparent base plate to automatically label episodes as successful or failed. The successful episodes are used to train a policy for autonomous data collection.</p>
       
       
       
@@ -1336,7 +1354,7 @@ p {
 
 
 
-<section id="features" class="relative hbb-section blox-features  bg-white dark:bg-gray-800" style="padding: 2rem 2rem 2rem 2rem;" >
+<section id="features" class="relative hbb-section blox-features  bg-white dark:bg-gray-800" style="padding: 2rem 2rem 1rem 1rem;" >
  <div class="home-section-bg " >
    
  </div>
@@ -1361,7 +1379,7 @@ p {
       <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white text-center">Comparative Analysis of Self-Supervised Objective Functions</h2>
       
       
-      <p class="text-gray-500 sm:text-xl dark:text-gray-400 text-center">Explore how different pre-training methods impact visuo-motor policy performance. GIFs below show FullGrad saliency maps for the respective models with different pre-training objectives.</p>
+      <p class="text-gray-500 sm:text-xl dark:text-gray-400 text-center">GIFs below show FullGrad saliency maps for models with different pre-training objectives and datasets. All models shown use the ViT-Small architecture. Results of all models and dataset compared in this work can be found in the <a href="https://arxiv.org/abs/2503.23571" target="_blank" rel="noopener">paper</a>.</p>
       
     </div>
     <div class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
@@ -1374,8 +1392,7 @@ p {
     <div class="w-100" ><img alt="Alt text"
            src="/case-study-site/media/moco_vit_small_RM_cam.gif"
            loading="lazy" data-zoomable /></div>
-  </div></figure>
-Our experiments indicate that MoCo pre-training results in <strong>lower prediction errors</strong> and <strong>improved success rates</strong>, though its performance is <strong>sensitive to the initial object positions</strong>.</p>
+  </div></figure></p>
         </div>
       
         <div>
@@ -1386,8 +1403,7 @@ Our experiments indicate that MoCo pre-training results in <strong>lower predict
     <div class="w-100" ><img alt="Alt text"
            src="/case-study-site/media/dino_vit_small_RM_cam.gif"
            loading="lazy" data-zoomable /></div>
-  </div></figure>
-This model demonstrated <strong>lower performance</strong> on unstructured random data compared to MoCo, potentially due to its <strong>activations focusing on the background</strong>.</p>
+  </div></figure></p>
         </div>
       
         <div>
@@ -1398,13 +1414,132 @@ This model demonstrated <strong>lower performance</strong> on unstructured rando
     <div class="w-100" ><img alt="Alt text"
            src="/case-study-site/media/mae_vit_small_RM_cam.gif"
            loading="lazy" data-zoomable /></div>
-  </div></figure>
-This modelshowed—similar to DINO—a <strong>sensitivity to background clutter</strong>, leading to <strong>suboptimal performance</strong> on random exploration frames in our stacking task.</p>
+  </div></figure></p>
         </div>
       
     </div>
   </div>
 </section>
+
+
+  
+
+  
+</section>
+
+  
+
+  
+  
+    
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="section-markdown" class="relative hbb-section blox-markdown  " style="padding: 2rem 0 2rem 0;" >
+ <div class="home-section-bg " >
+   
+ </div>
+  
+
+  
+
+    
+
+
+
+
+
+
+
+
+
+<div class="flex flex-col items-center max-w-prose mx-auto gap-3 justify-center px-6">
+
+  <div class="mb-6 text-3xl font-bold text-gray-900 dark:text-white">
+    
+  </div>
+
+  
+  <div class="prose prose-slate lg:prose-xl dark:prose-invert max-w-prose">We find that models pre-trained with MoCo objective outperform both MAE and DINO by a significant margin when trained on random exploration data. It can be seen that the activations of MoCo ViT-Small concentrate mainly in the task area. In contrast, the activations of poor-performing MAE ViT-Small and DINO ViT-Small focus on the background and exhibit dispersed activations when trained on random exploratin data.</div>
+</div>
 
 
   
@@ -1521,11 +1656,11 @@ This modelshowed—similar to DINO—a <strong>sensitivity to background clutter
 
   
   <div class="prose prose-slate lg:prose-xl dark:prose-invert max-w-prose"><h2 id="overview-of-results">Overview of Results</h2>
-<p>We conducted extensive real-world evaluations using the CloudGripper testbed. Our results indicate:</p>
 <ul>
-<li>Contrastive learning (MoCo) outperforms other self-supervised objectives (MAE, DINO) for visual pre-training using random exploration frames but is sensitive to initial object positions.</li>
-<li>Random motor command data mitigates distributional biases inherent in autonomously collected datasets, improving data distribution balance and policy performance.</li>
-</ul></div>
+<li><strong>Paradigm I</strong>: We identify MoCo with a ViT-Small architecture as an effective approach for visual pre-training leveraging random exploration video frames, though its performance is highly dependent on object initial positions.</li>
+<li><strong>Paradigm II</strong>: We find that autonomous data collection policies exhibit a strong distributional bias regarding the position of successful episodes in the workspace; however, incorporating data collected via random motor commands introduces balancing randomness, mitigating the distributional bias. Furthermore, our findings suggest that enforcing an even data distribution when composing data across stages and employing separate subtask policies may enable fully autonomous collection of sequential tasks.</li>
+</ul>
+</div>
 </div>
 
 
