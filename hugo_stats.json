@@ -38,7 +38,6 @@
       "-mr-1",
       "-mr-4",
       "[hyphens:auto]",
-      "authors",
       "bg-gray-100",
       "bg-image",
       "bg-neutral-300",
@@ -283,7 +282,10 @@
     "ids": [
       "acknowledgements",
       "cloudgripper-stack-750-dataset",
+      "custom-authors",
+      "experiments",
       "features",
+      "motivation",
       "overview",
       "page-bg",
       "section-cta-card",

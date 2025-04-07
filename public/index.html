@@ -1,0 +1,2091 @@
+<!doctype html>
+<!-- This site was created with Hugo Blox. https://hugoblox.com -->
+<!-- Last Published: April 7, 2025 --><html lang="en-us" dir="ltr"
+      data-wc-theme-default="light">
+  
+<head><script src="/case-study-site/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=case-study-site/livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="generator" content="Hugo Blox Builder 0.3.1" />
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Can Visuo-motor policies benefit from random exploration data? A case study on stacking" />
+
+  
+  <link rel="alternate" hreflang="en-us" href="http://localhost:1313/case-study-site/" />
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="/case-study-site/css/themes/indigo.min.css" />
+  
+
+  
+  
+    
+    <link href="/case-study-site/dist/wc.min.css" rel="stylesheet" />
+  
+
+  
+  
+  
+
+  
+    
+    <link href="/case-study-site/css/custom.min.89db1e7aac2dcdad0fef6d5cd00f2a7b392bc4460c4525cdb924e9dd49737d27.css" rel="stylesheet" />
+  
+
+  <script>
+     
+    window.hbb = {
+       defaultTheme: document.documentElement.dataset.wcThemeDefault,
+       setDarkTheme: () => {
+        document.documentElement.classList.add("dark");
+        document.documentElement.style.colorScheme = "dark";
+      },
+       setLightTheme: () => {
+        document.documentElement.classList.remove("dark");
+        document.documentElement.style.colorScheme = "light";
+      }
+    }
+
+    console.debug(`Default Hugo Blox Builder theme is ${window.hbb.defaultTheme}`);
+
+    if ("wc-color-theme" in localStorage) {
+      localStorage.getItem("wc-color-theme") === "dark" ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+    } else {
+      window.hbb.defaultTheme === "dark" ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+      if (window.hbb.defaultTheme === "system") {
+        window.matchMedia("(prefers-color-scheme: dark)").matches ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+      }
+    }
+  </script>
+
+  <script>
+    
+    document.addEventListener('DOMContentLoaded', function () {
+      
+      let checkboxes = document.querySelectorAll('li input[type=\'checkbox\'][disabled]');
+      checkboxes.forEach(e => {
+        e.parentElement.parentElement.classList.add('task-list');
+      });
+
+      
+      const liNodes = document.querySelectorAll('.task-list li');
+      liNodes.forEach(nodes => {
+        let textNodes = Array.from(nodes.childNodes).filter(node => node.nodeType === 3 && node.textContent.trim().length > 1);
+        if (textNodes.length > 0) {
+          const span = document.createElement('label');
+          textNodes[0].after(span);  
+          span.appendChild(nodes.querySelector('input[type=\'checkbox\']'));
+          span.appendChild(textNodes[0]);
+        }
+      });
+    });
+  </script>
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <link rel="alternate" href="/case-study-site/index.xml" type="application/rss+xml" title="Can Visuo-motor Policies Benefit From Random Exploration Data? A Case Study on Stacking" />
+  
+
+  
+  <link rel="icon" type="image/png" href="/case-study-site/media/icon_hu_739fa87b8a68a377.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/case-study-site/media/icon_hu_ecc6f5cdb3e26753.png" />
+
+  <link rel="canonical" href="http://localhost:1313/case-study-site/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Can Visuo-motor Policies Benefit From Random Exploration Data? A Case Study on Stacking" />
+  <meta property="og:url" content="http://localhost:1313/case-study-site/" />
+  <meta property="og:title" content="Can Visuo-motor Policies Benefit From Random Exploration Data? | Can Visuo-motor Policies Benefit From Random Exploration Data? A Case Study on Stacking" />
+  <meta property="og:description" content="Can Visuo-motor policies benefit from random exploration data? A case study on stacking" /><meta property="og:image" content="http://localhost:1313/case-study-site/media/logo.svg" />
+    <meta property="twitter:image" content="http://localhost:1313/case-study-site/media/logo.svg" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta property="og:updated_time" content="2023-10-24T00:00:00&#43;00:00" />
+    
+  
+
+  
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite","url": "http://localhost:1313/case-study-site/"
+}
+</script>
+
+
+  
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Research Paper",
+  "@id": "http://localhost:1313/case-study-site/",
+  "name": "KTH Royal Institute of Technology",
+  "logo": "http://localhost:1313/case-study-site/media/logo.svg",
+  
+  
+  
+  
+  "url": "http://localhost:1313/case-study-site/"
+}
+</script>
+
+  
+
+
+  <title>Can Visuo-motor Policies Benefit From Random Exploration Data? | Can Visuo-motor Policies Benefit From Random Exploration Data? A Case Study on Stacking</title>
+
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <style>
+    @font-face {
+      font-family: 'Inter var';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url(/case-study-site/dist/font/Inter.var.woff2) format(woff2);
+    }
+  </style>
+
+  
+
+  
+  
+
+
+  
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  <script
+    defer
+    src="/case-study-site/js/hugo-blox-en.min.js"
+    integrity=""
+  ></script>
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+  <body class="dark:bg-hb-dark dark:text-white page-wrapper" id="top">
+    <div id="page-bg"></div>
+    <div class="page-header sticky top-0 z-30">
+      
+      
+      
+    </div>
+    <div class="page-body ">
+      
+
+  
+  
+    
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+    
+      
+    
+    
+  
+  
+  
+
+
+
+  
+
+
+
+  
+    
+    
+    
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="section-markdown" class="relative hbb-section blox-markdown  dark" style="padding: 2rem 0 2rem 0;.custom-hero {
+  padding: 4rem 2rem;
+  text-align: center;
+  color: white;
+}
+.custom-hero h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+#custom-authors {
+  font-size: 1rem !important; /* Default font size */
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 1024px) {
+  .custom-hero .custom-authors {
+    font-size: 0.25rem !important;
+  }
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.primary-button, .secondary-button {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid #6a0dad;
+}
+.primary-button {
+  background-color: #6a0dad;
+  color: white;
+}
+.secondary-button {
+  background-color: rgba(106, 13, 173, 0.7);
+  color: white;
+}
+.primary-button:hover, .secondary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(106, 13, 173, 0.3);
+  background-color: #7b1fa2;
+}
+" >
+ <div class="home-section-bg  bg-image parallax" style="background-color: navy;background-image: url(&#39;http://localhost:1313/case-study-site/media/matrix_hu_6816778c923568f.webp&#39;);filter: brightness(0.11);">
+   
+ </div>
+  
+
+  
+
+    
+
+
+
+
+
+
+
+
+
+<div class="flex flex-col items-center max-w-prose mx-auto gap-3 justify-center px-6">
+
+  <div class="mb-6 text-3xl font-bold text-gray-900 dark:text-white">
+    
+  </div>
+
+  
+  <div class="prose prose-slate lg:prose-xl dark:prose-invert max-w-prose"><center>
+<div class="custom-hero">
+  <h3>Can Visuo-motor Policies Benefit From Random Exploration Data? A Case Study on Stacking</h3>
+  <p id="custom-authors">Shutong Jin*, Axel Kaliff*, Ruiyu Wang, Muhammad Zahid, Florian T. Pokorny</p>
+</div>
+  <a
+    href="https://arxiv.org/abs/2503.23571"
+    class="inline-block rounded border px-5 py-2 font-semibold transition
+    md:ml-4 px-4 py-1.5 text-sm
+    border-black  hover:bg-black dark:hover:bg-white dark:hover:text-black hover:text-white dark:border-white dark:text-white dark:hover:bg-white
+    lg:inline-block">
+    Read the Paper
+  </a>
+</center>
+</div>
+</div>
+
+
+  
+
+  
+</section>
+
+  
+
+  
+  
+    
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="section-stats" class="relative hbb-section blox-stats  bg-gray-100 dark:bg-gray-900" style="padding: 1rem 0 1rem 0;" >
+ <div class="home-section-bg " >
+   
+ </div>
+  
+
+  
+
+    
+
+
+
+
+
+
+
+
+
+
+<div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+
+  
+
+  <div class="grid grid-cols-3 row-gap-8">
+    
+    <div class="text-center md:border-r">
+      <h6 class="text-4xl font-bold lg:text-5xl xl:text-6xl">13k+</h6>
+      <p class="text-sm font-medium tracking-widest lg:text-base text-gray-800 dark:text-gray-300">Real-world episodes</p>
+    </div>
+    
+    <div class="text-center md:border-r">
+      <h6 class="text-4xl font-bold lg:text-5xl xl:text-6xl">750+</h6>
+      <p class="text-sm font-medium tracking-widest lg:text-base text-gray-800 dark:text-gray-300">Hours of labeled activity</p>
+    </div>
+    
+    <div class="text-center ">
+      <h6 class="text-4xl font-bold lg:text-5xl xl:text-6xl">1200+</h6>
+      <p class="text-sm font-medium tracking-widest lg:text-base text-gray-800 dark:text-gray-300">Real-world policy evaluations</p>
+    </div>
+    
+  </div>
+</div>
+
+
+  
+
+  
+</section>
+
+  
+
+  
+  
+    
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="section-markdown" class="relative hbb-section blox-markdown  light" style="padding: 2rem 0 2rem 0;h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+" >
+ <div class="home-section-bg " style="background-color: white;">
+   
+ </div>
+  
+
+  
+
+    
+
+
+
+
+
+
+
+
+
+<div class="flex flex-col items-center max-w-prose mx-auto gap-3 justify-center px-6">
+
+  <div class="mb-6 text-3xl font-bold text-gray-900 dark:text-white">
+    
+  </div>
+
+  
+  <div class="prose prose-slate lg:prose-xl dark:prose-invert max-w-prose"><h2 id="motivation">Motivation</h2>
+<p>Human demonstrations greatly enhance visuo-motor policy learning but are expensive and time-consuming to scale. Random exploration data, collected autonomously without human intervention, presents a scalable yet overlooked alternative. This work investigates whether visuo-motor policies can effectively leverage random exploration data to address these scalability challenges.</p></div>
+</div>
+
+
+  
+
+  
+</section>
+
+  
+
+  
+  
+    
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="section-markdown" class="relative hbb-section blox-markdown  bg-gray-100 dark:bg-gray-900" style="padding: 2rem 0 2rem 0;h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+" >
+ <div class="home-section-bg " style="background-color: white;">
+   
+ </div>
+  
+
+  
+
+    
+
+
+
+
+
+
+
+
+
+<div class="flex flex-col items-center max-w-prose mx-auto gap-3 justify-center px-6">
+
+  <div class="mb-6 text-3xl font-bold text-gray-900 dark:text-white">
+    
+  </div>
+
+  
+  <div class="prose prose-slate lg:prose-xl dark:prose-invert max-w-prose"><h2 id="overview">Overview</h2>
+<p>We examine two paradigms for leveraging random exploration data in visuo-motor policy learning:</p>
+<ul>
+<li><strong>Paradigm I:</strong> Using random exploration video frames for visual pre-training with reconstruction, contrastive, and distillation self-supervised objectives.</li>
+<li><strong>Paradigm II:</strong> Employing random motor commands within a staged learning framework to autonomously collect data for behavior cloning.</li>
+</ul>
+<p>The dataset presented in this work includes over <strong>750 hours</strong> of robot data, providing insights into the benefits and limitations of each approach.</p>
+</div>
+</div>
+
+
+  
+
+  
+</section>
+
+  
+
+  
+  
+    
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="section-markdown" class="relative hbb-section blox-markdown  light" style="padding: 2rem 0 2rem 0;h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+" >
+ <div class="home-section-bg " style="background-color: white;">
+   
+ </div>
+  
+
+  
+
+    
+
+
+
+
+
+
+
+
+
+<div class="flex flex-col items-center max-w-prose mx-auto gap-3 justify-center px-6">
+
+  <div class="mb-6 text-3xl font-bold text-gray-900 dark:text-white">
+    
+  </div>
+
+  
+  <div class="prose prose-slate lg:prose-xl dark:prose-invert max-w-prose"><h2 id="experiments">Experiments</h2>
+<p>We conducted extensive real-world evaluations using the CloudGripper testbed. Our results indicate:</p>
+<ul>
+<li>Contrastive learning (MoCo) outperforms other self-supervised objectives (MAE, DINO) for visual pre-training using random exploration frames but is sensitive to initial object positions.</li>
+<li>Random motor command data mitigates distributional biases inherent in autonomously collected datasets, improving data distribution balance and policy performance.</li>
+</ul></div>
+</div>
+
+
+  
+
+  
+</section>
+
+  
+
+  
+  
+    
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="solutions" class="relative hbb-section blox-cta-image-paragraph  bg-gray-100 dark:bg-gray-900" style="padding: 2rem 2rem 2rem 2rem;" >
+ <div class="home-section-bg " >
+   
+ </div>
+  
+
+  
+
+    
+
+
+
+
+
+
+
+<div>
+  
+  
+  
+  
+  
+  
+    
+  
+  <div class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
+    <img class="w-full" src="/case-study-site/media/structureA_hu_ac1796723bffa3ed.webp" alt="Random Video Frames for Visual Pre-training" style="order: 1">
+    <div class="mt-4 md:mt-0">
+      <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Random Video Frames for Visual Pre-training</h2>
+      <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">Paradigm I employs random exploration frames from the CloudGripper-Push-1K dataset to pre-train visual encoders. This method leverages various self-supervised objectives to improve policy performance.</p>
+      
+      
+      
+      <a href="https://github.com/cloudgripper/cloudgripper-push-1k" class="mt-3 inline-flex items-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900">
+        CloudGripper-Push-1K Dataset
+        <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+      </a>
+      
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+    
+  
+  <div class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
+    <img class="w-full" src="/case-study-site/media/structureB_hu_c16cf64a490a869b.webp" alt="Random Motor Commands for Staged Learning" >
+    <div class="mt-4 md:mt-0">
+      <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Random Motor Commands for Staged Learning</h2>
+      <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">Paradigm II implements a staged learning framework, where random motor commands autonomously generate training episodes, progressively training a more robust policy.</p>
+      
+      
+      
+      <a href="#" class="mt-3 inline-flex items-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900">
+        Code will be open-sourced after paper acceptance
+        <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+      </a>
+      
+    </div>
+  </div>
+  
+</div>
+
+
+  
+
+  
+</section>
+
+  
+
+  
+  
+    
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="features" class="relative hbb-section blox-features  bg-white dark:bg-gray-800" style="padding: 2rem 2rem 2rem 2rem;" >
+ <div class="home-section-bg " >
+   
+ </div>
+  
+
+  
+
+    
+
+
+
+
+
+
+
+
+
+<section>
+  <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+    <div class="max-w-screen-md mb-8 lg:mb-16 flex flex-col justify-center mx-auto">
+      
+      <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white text-center">Comparative Analysis of Self-Supervised Objective Functions</h2>
+      
+      
+      <p class="text-gray-500 sm:text-xl dark:text-gray-400 text-center">Explore how different pre-training methods impact visuo-motor policy performance. GIFs below show FullGrad saliency maps for the respective models with different pre-training objectives.</p>
+      
+    </div>
+    <div class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
+      
+        <div>
+          
+          <h3 class="mb-2 text-xl font-bold dark:text-white">MoCo (Contrastive Loss)</h3>
+          <p class="text-gray-500 dark:text-gray-400"><figure  >
+  <div class="flex justify-center	">
+    <div class="w-100" ><img alt="Alt text"
+           src="/case-study-site/media/moco_vit_small_RM_cam.gif"
+           loading="lazy" data-zoomable /></div>
+  </div></figure>
+Our experiments indicate that MoCo pre-training results in <strong>lower prediction errors</strong> and <strong>improved success rates</strong>, though its performance is <strong>sensitive to the initial object positions</strong>.</p>
+        </div>
+      
+        <div>
+          
+          <h3 class="mb-2 text-xl font-bold dark:text-white">DINO (Distillation Loss)</h3>
+          <p class="text-gray-500 dark:text-gray-400"><figure  >
+  <div class="flex justify-center	">
+    <div class="w-100" ><img alt="Alt text"
+           src="/case-study-site/media/dino_vit_small_RM_cam.gif"
+           loading="lazy" data-zoomable /></div>
+  </div></figure>
+This model demonstrated <strong>lower performance</strong> on unstructured random data compared to MoCo, suggesting that <strong>further tuning</strong> is required.</p>
+        </div>
+      
+        <div>
+          
+          <h3 class="mb-2 text-xl font-bold dark:text-white">MAE (Reconstruction Loss)</h3>
+          <p class="text-gray-500 dark:text-gray-400"><figure  >
+  <div class="flex justify-center	">
+    <div class="w-100" ><img alt="Alt text"
+           src="/case-study-site/media/mae_vit_small_RM_cam.gif"
+           loading="lazy" data-zoomable /></div>
+  </div></figure>
+This model showed a <strong>sensitivity to background clutter</strong>, leading to <strong>suboptimal performance</strong> on random exploration frames in our stacking task.</p>
+        </div>
+      
+    </div>
+  </div>
+</section>
+
+
+  
+
+  
+</section>
+
+  
+
+  
+  
+    
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="section-markdown" class="relative hbb-section blox-markdown  light" style="padding: 2rem 0 2rem 0;h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+p, a {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+" >
+ <div class="home-section-bg " style="background-color: white;">
+   
+ </div>
+  
+
+  
+
+    
+
+
+
+
+
+
+
+
+
+<div class="flex flex-col items-center max-w-prose mx-auto gap-3 justify-center px-6">
+
+  <div class="mb-6 text-3xl font-bold text-gray-900 dark:text-white">
+    
+  </div>
+
+  
+  <div class="prose prose-slate lg:prose-xl dark:prose-invert max-w-prose"><h2 id="cloudgripper-stack-750-dataset">CloudGripper-Stack-750 Dataset</h2>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="flex justify-center	">
+    <div class="w-100" ><img alt="Alt text"
+           src="/case-study-site/media/matrix.gif"
+           loading="lazy" data-zoomable /></div>
+  </div></figure>
+
+The dataset comprises over <strong>750 hours</strong> of robot activity data—including <strong>400 successful</strong> and <strong>12,000 failed</strong> episodes—collected autonomously using the CloudGripper testbed. This comprehensive collection is provided as a resource for research on visuo-motor policy development. The dataset will be open-sourced after paper acceptance.</p></div>
+</div>
+
+
+  
+
+  
+</section>
+
+  
+
+  
+  
+    
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="section-cta-card" class="relative hbb-section blox-cta-card  " style="padding: 2rem 0 2rem 0;" >
+ <div class="home-section-bg " >
+   
+ </div>
+  
+
+  
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="bg-primary-700 p-8 md:px-20 md:py-20 mx-auto max-w-5xl rounded-lg flex flex-col items-center text-center"
+     style="color: white; text-align: center; padding: 2rem;">
+  <h2 class="text-white text-4xl md:text-6xl tracking-tight">
+    Collected Using CloudGripper
+  </h2>
+  <div class="text-gray-100 mt-4 text-lg md:text-xl prose">
+    In this study, the <strong>CloudGripper robotic testbed</strong> was employed to remotely and autonomously collect a large dataset of real robot data, train policies, and conduct evaluations with <strong>minimal human intervention</strong> via cloud services. Researchers interested in utilizing CloudGripper are encouraged to explore the <strong>open-source dataset</strong> and <strong>data collection pipeline</strong>.
+  </div>
+  
+  <div class="flex mt-5">
+    <a href="https://github.com/cloudgripper" class="rounded text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 px-5 py-2.5 bg-white hover:bg-gray-300 text-black border-2 border-transparent">
+      CloudGripper Github
+    </a>
+  </div>
+  
+</div>
+
+
+  
+
+  
+</section>
+
+  
+
+  
+  
+    
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="section-markdown" class="relative hbb-section blox-markdown  light" style="padding: 2rem 0 2rem 0;h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+p, a {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+" >
+ <div class="home-section-bg " style="background-color: white;">
+   
+ </div>
+  
+
+  
+
+    
+
+
+
+
+
+
+
+
+
+<div class="flex flex-col items-center max-w-prose mx-auto gap-3 justify-center px-6">
+
+  <div class="mb-6 text-3xl font-bold text-gray-900 dark:text-white">
+    
+  </div>
+
+  
+  <div class="prose prose-slate lg:prose-xl dark:prose-invert max-w-prose"><h3 id="acknowledgements">Acknowledgements</h3>
+<p><strong>Equal contribution.</strong> The authors are with the School of Electrical Engineering and Computer Science, KTH Royal Institute of Technology. This work was partially supported by the Wallenberg AI, Autonomous Systems and Software Program (WASP), funded by the Knut and Alice Wallenberg Foundation. The computations were enabled by the supercomputing resource Berzelius provided by the National Supercomputer Centre at Linköping University and the Knut and Alice Wallenberg Foundation, Sweden.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="flex justify-center	">
+    <div class="w-100" ><img alt="Alt text" srcset="
+               /case-study-site/media/kth-logo_hu_8f8b013b438f13fb.webp 400w,
+               /case-study-site/media/kth-logo_hu_16cf429f608d0a74.webp 760w,
+               /case-study-site/media/kth-logo_hu_11113a01809ae032.webp 1200w"
+               src="/case-study-site/media/kth-logo_hu_8f8b013b438f13fb.webp"
+               width="760"
+               height="270"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p></div>
+</div>
+
+
+  
+
+  
+</section>
+
+  
+
+
+    </div>
+    <div class="page-footer">
+      <footer class="container mx-auto flex flex-col justify-items-center text-sm leading-6 mt-24 mb-4 text-slate-700 dark:text-slate-200">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+<p class="text-center">
+  
+  <a href="/case-study-site/privacy/"></a>
+  
+  
+   &middot; 
+  <a href="/case-study-site/terms/"></a>
+  
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <p class="powered-by text-center">
+    © 2025 KTH Royal Institute of Technology
+  </p>
+  
+
+
+
+
+
+  <p class="powered-by text-center">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://hugoblox.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Hugo Blox Builder</a> — the free, <a href="https://github.com/HugoBlox/hugo-blox-builder" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+
+</footer>
+
+    </div>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
