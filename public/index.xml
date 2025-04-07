@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Can Visuo-motor Policies Benefit From Random Exploration Data? | Can Visuo-motor Policies Benefit From Random Exploration Data? A Case Study on Stacking</title>
-    <link>http://localhost:1313/case-study-site/</link>
-      <atom:link href="http://localhost:1313/case-study-site/index.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:1313/cloudgripper-stack-750/</link>
+      <atom:link href="http://localhost:1313/cloudgripper-stack-750/index.xml" rel="self" type="application/rss+xml" />
     <description>Can Visuo-motor Policies Benefit From Random Exploration Data?</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 24 Oct 2023 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://localhost:1313/case-study-site/media/logo.svg</url>
+      <url>http://localhost:1313/cloudgripper-stack-750/media/logo.svg</url>
       <title>Can Visuo-motor Policies Benefit From Random Exploration Data?</title>
-      <link>http://localhost:1313/case-study-site/</link>
+      <link>http://localhost:1313/cloudgripper-stack-750/</link>
     </image>
     
     <item>
       <title></title>
-      <link>http://localhost:1313/case-study-site/privacy/</link>
+      <link>http://localhost:1313/cloudgripper-stack-750/privacy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/case-study-site/privacy/</guid>
+      <guid>http://localhost:1313/cloudgripper-stack-750/privacy/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://localhost:1313/case-study-site/terms/</link>
+      <link>http://localhost:1313/cloudgripper-stack-750/terms/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/case-study-site/terms/</guid>
+      <guid>http://localhost:1313/cloudgripper-stack-750/terms/</guid>
       <description></description>
     </item>
     

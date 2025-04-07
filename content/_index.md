@@ -73,7 +73,7 @@ sections:
         image:
           filename: matrix.gif
           filters:
-            brightness: 0.11
+            brightness: 0.15
 
   - block: stats
     content:
@@ -222,7 +222,7 @@ sections:
       text: |
         ## CloudGripper-Stack-750 Dataset
         ![Alt text](matrix.gif)
-        The dataset comprises over **750 hours** of robot activity data—including **400 successful** and **12,000 failed** episodes—collected autonomously using the CloudGripper testbed. This large-scale collection is intended as a resource for research on visuo-motor policy development and will be open-sourced after paper acceptance.
+        The dataset comprises over **750 hours** of robot activity data—including **400 successful** and **12,000 failed** episodes—collected autonomously using the CloudGripper testbed. This large-scale collection is intended as a resource for research on visuo-motor policy development and will be released after paper acceptance.
     design:
       css_class: "light"
       css_style: |
@@ -258,15 +258,14 @@ sections:
   - block: markdown
     content:
       text: |
-        ### Acknowledgements
+        ## Acknowledgements
         **\*Equal contribution.** The authors are with the School of Electrical Engineering and Computer Science, KTH Royal Institute of Technology. This work was partially supported by the Wallenberg AI, Autonomous Systems and Software Program (WASP), funded by the Knut and Alice Wallenberg Foundation. The computations were enabled by the supercomputing resource Berzelius provided by the National Supercomputer Centre at Linköping University and the Knut and Alice Wallenberg Foundation, Sweden.
         ![Alt text](kth-logo.png)
     design:
       css_class: "light"
       css_style: |
-        h2 {
-          font-size: 2rem;
-          margin-bottom: 1rem;
+        h3 {
+          font-size: 1rem;
         }
         p, a {
           font-size: 1rem;

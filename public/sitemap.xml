@@ -2,23 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/case-study-site/</loc>
+    <loc>http://localhost:1313/cloudgripper-stack-750/</loc>
     <lastmod>2023-10-24T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:1313/case-study-site/privacy/</loc>
+    <loc>http://localhost:1313/cloudgripper-stack-750/privacy/</loc>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:1313/case-study-site/terms/</loc>
+    <loc>http://localhost:1313/cloudgripper-stack-750/terms/</loc>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:1313/case-study-site/authors/</loc>
+    <loc>http://localhost:1313/cloudgripper-stack-750/authors/</loc>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:1313/case-study-site/categories/</loc>
+    <loc>http://localhost:1313/cloudgripper-stack-750/categories/</loc>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:1313/case-study-site/tags/</loc>
+    <loc>http://localhost:1313/cloudgripper-stack-750/tags/</loc>
     <changefreq>weekly</changefreq>
   </url>
 </urlset>
