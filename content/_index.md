@@ -183,7 +183,7 @@ sections:
             Data episodes are generated via random motor commands, with a detector using a custom bottom camera that views the scene from below through a transparent base plate to automatically label episodes as successful or failed. The successful episodes are used to train a policy for autonomous data collection.
           image: structureB.png
           button:
-            text: Code will be open-sourced after paper acceptance
+            text: Code to be released after paper acceptance
             url: "#"
     design:
       css_class: "bg-gray-100 dark:bg-gray-900"
@@ -194,7 +194,7 @@ sections:
     id: features
     content:
       title: Comparative Analysis of Self-Supervised Objective Functions
-      text: GIFs below show FullGrad saliency maps for models with different pre-training objectives and datasets. All models shown use the ViT-Small architecture. Results of all models and dataset compared in this work can be found in the [paper](https://arxiv.org/abs/2503.23571).
+      text: GIFs below show FullGrad saliency maps for models trained on random exploration video frames with different pre-training objectives. All models shown use the ViT-Small architecture. Results of all models and dataset compared in this work can be found in the [paper](https://arxiv.org/abs/2503.23571).
       items:
         - name: MoCo (Contrastive Loss)
           description: |
@@ -236,7 +236,7 @@ sections:
       text: |
         ## CloudGripper-Stack-750 Dataset
         ![Alt text](matrix.gif)
-        The dataset comprises over **750 hours** of robot activity data—including **400 successful** and **12,000 failed** episodes—collected autonomously using the CloudGripper testbed. This comprehensive collection is provided as a resource for research on visuo-motor policy development. The dataset will be open-sourced after paper acceptance.
+        The dataset comprises over **750 hours** of robot activity data—including **400 successful** and **12,000 failed** episodes—collected autonomously using the CloudGripper testbed. This large-scale collection is intended as a resource for research on visuo-motor policy development and will be open-sourced after paper acceptance.
     design:
       css_class: "light"
       css_style: |
@@ -259,7 +259,7 @@ sections:
     content:
       title: Collected Using CloudGripper
       text: |
-          In this study, the **CloudGripper robotic testbed** was employed to remotely and autonomously collect a large dataset of real robot data, train policies, and conduct evaluations with **minimal human intervention** via cloud services. Researchers interested in utilizing CloudGripper are encouraged to explore the **open-source dataset** and **data collection pipeline**.
+          In this study, the CloudGripper robotics testbed is employed to remotely and autonomously collect a large-scale dataset of real-world robot data, train policies, and conduct evaluations with minimal human intervention. Researchers interested in utilizing CloudGripper are encouraged to explore the dataset and data collection pipeline when these are released upon paper acceptance.
       button:
         text: CloudGripper Github
         url: "https://github.com/cloudgripper"
@@ -272,7 +272,7 @@ sections:
     content:
       text: |
         ### Acknowledgements
-        **Equal contribution.** The authors are with the School of Electrical Engineering and Computer Science, KTH Royal Institute of Technology. This work was partially supported by the Wallenberg AI, Autonomous Systems and Software Program (WASP), funded by the Knut and Alice Wallenberg Foundation. The computations were enabled by the supercomputing resource Berzelius provided by the National Supercomputer Centre at Linköping University and the Knut and Alice Wallenberg Foundation, Sweden.
+        **\*Equal contribution.** The authors are with the School of Electrical Engineering and Computer Science, KTH Royal Institute of Technology. This work was partially supported by the Wallenberg AI, Autonomous Systems and Software Program (WASP), funded by the Knut and Alice Wallenberg Foundation. The computations were enabled by the supercomputing resource Berzelius provided by the National Supercomputer Centre at Linköping University and the Knut and Alice Wallenberg Foundation, Sweden.
         ![Alt text](kth-logo.png)
     design:
       css_class: "light"
