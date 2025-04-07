@@ -1,3 +1,40 @@
 #custom-authors {
-    font-size: 16px !important;
+    font-size: 14px !important;
+}
+
+#custom-page-title {
+    font-size: 1.0em !important;
+}    
+
+.px-6 {
+padding: 0.0rem 0.0rem;
+}
+
+h6 {
+    font-size: 1.85rem !important;
+}
+
+h4 {
+    font-size: 1.55rem !important;
+}
+
+h2 {
+    font-size: 1.55rem !important;
+}
+
+.sm\:py-16 {
+padding-bottom: 0rem !important;
+}
+
+.gap-3 {
+    gap: 0.0rem !important;
+}
+
+.sm\:text-xl {
+        font-size: 1.0rem;
+}
+
+.text-xl {
+        font-size: 1.0rem;
+        text-align: center;
 }

@@ -4,7 +4,7 @@
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
 title: Can Visuo-motor Policies Benefit From Random Exploration Data? A Case Study on Stacking # Website name
-baseURL: 'https://axel-kaliff.github.io/case-study-site/' # Website URL
+baseURL: 'https://axel-kaliff.github.io/cloudgripper-stack-750/' # Website URL
 
 ############################
 ## PAGE OPTIONS

@@ -13,7 +13,7 @@ sections:
       text: |
         <center>
         <div class="custom-hero">
-          <h3>Can Visuo-motor Policies Benefit From Random Exploration Data? A Case Study on Stacking</h3>
+          <h4 id="custom-page-title">Can Visuo-motor Policies Benefit From Random Exploration Data?<br>A Case Study on Stacking</h4>
           <p id="custom-authors">Shutong Jin*, Axel Kaliff*, Ruiyu Wang, Muhammad Zahid, Florian T. Pokorny</p>
         </div>
           <a
@@ -34,24 +34,11 @@ sections:
     design:
       css_class: "dark"
       css_style: |
+
         .custom-hero {
-          padding: 4rem 2rem;
+          padding: 0.1rem 0.1rem;
           text-align: center;
           color: white;
-        }
-        .custom-hero h3 {
-          font-size: 1.5rem;
-          font-weight: 500;
-          margin-bottom: 1rem;
-        }
-        #custom-authors {
-          font-size: 1rem !important; /* Default font size */
-          margin-bottom: 1.5rem;
-        }
-        @media (min-width: 1024px) {
-          .custom-hero .custom-authors {
-            font-size: 0.25rem !important;
-          }
         }
         .buttons {
           display: flex;
@@ -103,13 +90,13 @@ sections:
     design:
       css_class: "bg-gray-100 dark:bg-gray-900"
       spacing:
-        padding: ["1rem", 0, "1rem", 0]
+        padding: ["0rem", 0, "0rem", 0]
 
 
   - block: markdown
     content:
       text: |
-        ## Motivation
+        #### Motivation
         Visuo-motor policies for robotic manipulation have long faced scalability challenges in collecting human demonstrations. The high cost of human labor and reliance on teleoperation systems pose substantial barriers to data collection in new environments. This motivates us to focus on a scalable yet often overlooked data source—random exploration data, collected within the target task’s environment, which might be a potential add-on for human demonstrations. However, its lack of task-specific information and the inherent unstructured nature of such data greatly complicates its practical utilization. This leads us to investigate the following question: __Can Visuo-motor Policies Benefit from Random Exploration Data?__
 
     design:
@@ -131,7 +118,7 @@ sections:
   - block: markdown
     content:
       text: |
-        ## Overview
+        #### Overview
         We examine two paradigms for leveraging random exploration data in visuo-motor policy learning:
         - **Paradigm I** evaluates the use of random exploration video frames through three self-supervised pre-training objectives: reconstruction, contrastive, and distillation loss.
         - **Paradigm II** evaluates the effectiveness of random motor commands for autonomous data collection within a fully automated staged learning framework.
@@ -212,8 +199,7 @@ sections:
 
   - block: markdown
     content:
-      text: |
-       We find that models pre-trained with MoCo objective outperform both MAE and DINO by a significant margin when trained on random exploration data. It can be seen that the activations of MoCo ViT-Small concentrate mainly in the task area. In contrast, the activations of poor-performing MAE ViT-Small and DINO ViT-Small focus on the background and exhibit dispersed activations when trained on random exploratin data. 
+      text: We find that models pre-trained with MoCo objective outperform both MAE and DINO by a significant margin when trained on random exploration data. It can be seen that the activations of MoCo ViT-Small concentrate mainly in the task area. In contrast, the activations of poor-performing MAE ViT-Small and DINO ViT-Small focus on the background and exhibit dispersed activations when trained on random exploratin data. 
       design:
       css_class: "bg-white dark:bg-gray-900"
       spacing:
@@ -259,14 +245,15 @@ sections:
     content:
       title: Collected Using CloudGripper
       text: |
-          In this study, the CloudGripper robotics testbed is employed to remotely and autonomously collect a large-scale dataset of real-world robot data, train policies, and conduct evaluations with minimal human intervention. Researchers interested in utilizing CloudGripper are encouraged to explore the dataset and data collection pipeline when these are released upon paper acceptance.
+          In this study, the CloudGripper cloud robotics testbed is employed to remotely and autonomously collect a large-scale dataset of real-world robot data, train policies, and conduct evaluations with minimal human intervention. Researchers interested in utilizing CloudGripper are encouraged to explore the dataset and data collection pipeline when these are released upon paper acceptance.
       button:
         text: CloudGripper Github
         url: "https://github.com/cloudgripper"
     design:
       card:
         css_class: "bg-primary-700"
-        css_style: "color: white; text-align: center; padding: 2rem;"
+        css_style: "color: white; text-align: center; padding: 2rem; font-size: 1rem;"
+        
 
   - block: markdown
     content:
