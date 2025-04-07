@@ -110,7 +110,8 @@ sections:
     content:
       text: |
         ## Motivation
-        Human demonstrations greatly enhance visuo-motor policy learning but are expensive and time-consuming to scale. Random exploration data, collected autonomously without human intervention, presents a scalable yet overlooked alternative. This work investigates whether visuo-motor policies can effectively leverage random exploration data to address these scalability challenges.
+        Visuo-motor policies have long faced scalability challenges due in part to the high cost and complexity of collecting human demonstrations. To address this, we consider random exploration data—an easily scalable yet typically overlooked resource—as a potential supplement. However, its unstructured nature and absence of task-specific information complicate its practical use, motivating our central question: __Can Visuo-motor Policies Benefit from Random Exploration Data?__
+
     design:
       css_class: "light"
       css_style: |
@@ -151,14 +152,6 @@ sections:
       background:
         color: "white"
 
-  - block: markdown
-    content:
-      text: |
-        ## Experiments
-        We conducted extensive real-world evaluations using the CloudGripper testbed. Our results indicate:
-        - Contrastive learning (MoCo) outperforms other self-supervised objectives (MAE, DINO) for visual pre-training using random exploration frames but is sensitive to initial object positions.
-        - Random motor command data mitigates distributional biases inherent in autonomously collected datasets, improving data distribution balance and policy performance.
-
     design:
       css_class: "light"
       css_style: |
@@ -180,7 +173,7 @@ sections:
       items:
         - title: Random Video Frames for Visual Pre-training
           text: |
-            Paradigm I employs random exploration frames from the CloudGripper-Push-1K dataset to pre-train visual encoders. This method leverages various self-supervised objectives to improve policy performance. 
+            Paradigm I employs random exploration frames from the CloudGripper-Push-1K dataset to pre-train visual encoders.
           image: structureA.png
           button:
             text: CloudGripper-Push-1K Dataset
@@ -208,12 +201,24 @@ sections:
             ![Alt text](moco_vit_small_RM_cam.gif)Our experiments indicate that MoCo pre-training results in **lower prediction errors** and **improved success rates**, though its performance is **sensitive to the initial object positions**.
         - name: DINO (Distillation Loss)
           description: |
-            ![Alt text](dino_vit_small_RM_cam.gif)This model demonstrated **lower performance** on unstructured random data compared to MoCo, suggesting that **further tuning** is required.
+            ![Alt text](dino_vit_small_RM_cam.gif)This model demonstrated **lower performance** on unstructured random data compared to MoCo, potentially due to its **activations focusing on the background**.
         - name: MAE (Reconstruction Loss)
           description: |
-            ![Alt text](mae_vit_small_RM_cam.gif)This model showed a **sensitivity to background clutter**, leading to **suboptimal performance** on random exploration frames in our stacking task.
+            ![Alt text](mae_vit_small_RM_cam.gif)This modelshowed—similar to DINO—a **sensitivity to background clutter**, leading to **suboptimal performance** on random exploration frames in our stacking task.
     design:
       css_class: "bg-white dark:bg-gray-800"
+      spacing:
+        padding: ["2rem", "2rem", "2rem", "2rem"]
+
+  - block: markdown
+    content:
+      text: |
+        ## Overview of Results
+        We conducted extensive real-world evaluations using the CloudGripper testbed. Our results indicate:
+        - Contrastive learning (MoCo) outperforms other self-supervised objectives (MAE, DINO) for visual pre-training using random exploration frames but is sensitive to initial object positions.
+        - Random motor command data mitigates distributional biases inherent in autonomously collected datasets, improving data distribution balance and policy performance.
+    design:
+      css_class: "bg-gray-100 dark:bg-gray-900"
       spacing:
         padding: ["2rem", "2rem", "2rem", "2rem"]
 
